@@ -183,7 +183,7 @@ module Spidr
       each_redirect(&block) if is_redirect?
 
       if (html? && doc)
-        doc.search('//a[@href[string()]]').each do |a|
+        doc.search('//a[@href[string()] and (not(@data-method) or (@data-method="get"))]').each do |a|
           yield a.get_attribute('href')
         end
 
